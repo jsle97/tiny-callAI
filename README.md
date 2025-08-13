@@ -292,7 +292,7 @@ tinyCall believes in:
 
 **"Model doesn't support images"**: Check the vision-capable models list above. Not all models have eyes!
 
-**"Rate limit exceeded"**: You're going too fast. Add some delays or upgrade your API plan.
+**"Rate limiting exceeded"**: You're going too fast. Add some delays or upgrade your API plan.
 
 **"Invalid API key for Anthropic"**: Claude keys should start with `sk-ant-api03-`
 
@@ -315,7 +315,7 @@ We especially love:
 
 ## License
 
-MIT - Go wild! Use it in your startup, your weekend project, your fortune 500 company. Just remember us when you're rich.
+CC BY-NC 4.0
 
 ## What's Next?
 
