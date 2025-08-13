@@ -336,7 +336,9 @@ Happy coding! 🚀
 
 ## Author
 Jakub Śledzikowski
+
 jsle.eu | jakub@jsle.eu
+
 https://ko-fi.com/jsle97
 
 ---
