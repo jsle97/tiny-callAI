@@ -1,5 +1,5 @@
 /* tinyCallAI library
- * License: MIT
+ * License: CC BY-NC 4.0
  * ------------------------------------------------------------------------------
  * Copyright (c) 2025 Jakub Śledzikowski <jakub@jsle.eu>
  *
