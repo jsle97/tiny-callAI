@@ -1,4 +1,11 @@
-// file: tinyCall.js
+/* tinyCallAI library
+ * License: MIT
+ * ------------------------------------------------------------------------------
+ * Copyright (c) 2025 Jakub Śledzikowski <jakub@jsle.eu>
+ *
+ */
+
+
 import https from 'https';
 import fs from 'fs';
 import path from 'path';
