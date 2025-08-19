@@ -195,7 +195,7 @@ const AI_PROVIDERS = {
    'gpt-4.1m': { name: 'gpt-4.1-mini', cost: { in: 0.4, out: 1.6 } },
    'gpt-4.1n': { name: 'gpt-4.1-nano', cost: { in: 0.1, out: 0.4 } },
    'gpt-5': { name: 'gpt-5', cost: { in: 1.25, out: 10 } },
-   'gpt-5n': { name: 'gpt-5-mini', cost: { in: 0.25, out: 2 } },
+   'gpt-5m': { name: 'gpt-5-mini', cost: { in: 0.25, out: 2 } },
    'gpt-5n': { name: 'gpt-5-nano', cost: { in: 0.05, out: 0.4 } },
    'gpt-o3m': { name: 'o3-mini', cost: { in: 1.1, out: 4.4 } },
    'gpt-o4m': { name: 'o4-mini', cost: { in: 1.1, out: 4.4 } }
