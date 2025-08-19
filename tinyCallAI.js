@@ -1,5 +1,5 @@
 /* tinyCallAI library
- * License: CC BY-NC 4.0
+ * License: MIT
  * ------------------------------------------------------------------------------
  * Copyright (c) 2025 Jakub Śledzikowski <jakub@jsle.eu>
  *
@@ -657,8 +657,8 @@ const response = await makeRequest(apiUrl, payload, headers, options.timeout || 
   const normalizedUsage = normalizeUsage(provider, rawUsage, messages, text);
 
   const cost = {
-   in: parseFloat(((normalizedUsage.prompt_tokens / 1_000_000) * modelConfig.cost.in).toFixed(8)),
-   out: parseFloat(((normalizedUsage.completion_tokens / 1_000_000) * modelConfig.cost.out).toFixed(8)),
+   in: parseFloat(((normalizedUsage.prompt_tokens / 1_000_000) * modelConfig.cost.in).toFixed(6)),
+   out: parseFloat(((normalizedUsage.completion_tokens / 1_000_000) * modelConfig.cost.out).toFixed(6)),
    total: 0
   };
   cost.total = parseFloat((cost.in + cost.out));
