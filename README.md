@@ -94,14 +94,14 @@ Got images? We got you covered:
 ```javascript
 import fs from 'fs';
 
-const imageBuffer = fs.readFileSync('cat.jpg');
+const imageBase64 = fs.readFileSync('cat.jpg').toString('base64');
 
 const response = await callAI('gpt-4om', [
   {
     role: 'user',
     content: [
       { type: 'text', text: 'What do you see?' },
-      { type: 'image', url: imageBuffer }  // Works with Buffer, base64, or data URLs
+      { type: 'image', url: imageBase64 }  // Works with base64, or data URLs
     ]
   }
 ]);
@@ -124,10 +124,6 @@ const reasoning = await callAI('gpt-o3m', messages, {
   think: 'medium'  // o3/o4 models use reasoning_effort
 });
 
-// DeepSeek R1 for advanced reasoning
-const deepReasoning = await callAI('ds-r1', messages, {
-  think: true  // Let it think deeply
-});
 ```
 
 ### System Messages That Just Work
@@ -151,7 +147,7 @@ Here's what's available out of the box:
 
 ### OpenAI
 - `gpt-4om` - GPT-4o mini (fast & cheap, vision capable)
-- `gpt-4.1` - GPT-4.1 (the flagship)
+- `gpt-4.1` - GPT-4.1
 - `gpt-4.1m` - GPT-4.1 mini
 - `gpt-4.1n` - GPT-4.1 nano
 - `gpt-5` - GPT-5 (the new hotness)
@@ -191,7 +187,7 @@ Here's what's available out of the box:
 - `grok-code-fast` - Coding specialist
 
 ### Together AI
-- `ds-r1` - DeepSeek R1 (reasoning powerhouse)
+- `ds-r1` - DeepSeek R1 
 - `ds-v3` - DeepSeek V3
 - `qw3-235b-think` - Qwen3 235B Thinking
 - `qw3-480b` - Qwen3 Coder 480B
@@ -328,28 +324,14 @@ Found a bug? Want to add a provider? Awesome! This is a single-file library, so 
 3. Test with your own API keys
 4. Send a PR
 
-We especially love:
-- New provider integrations
-- Performance improvements
-- Better error messages
-- Documentation fixes (yes, even typos)
+I also have a version that includes llmy/sst/tts/ocr/embedding/re-ranking—all on one unified API and streaming/caching/retrying. Interested? Feel free to ask. :)
 
 ## License
-
 MIT
 
-## What's Next?
-
-- [ ] Streaming support (the big one)
-- [ ] Function calling / Tools API
-- [ ] Embeddings support
-- [ ] Automatic retry with exponential backoff
-- [ ] Response caching
-- [ ] Browser support (why not?)
-
 ## Final Words
+callAI-tiny was made to make it easier for you - developers - to spin up models wherever you want, however you want, with no requirements. Because JS is the best language!
 
-callAI-tiny is what we wished existed when we started juggling multiple AI providers. It's not trying to be everything to everyone - it's just trying to make AI calls tiny and simple.
 
 Got questions? Issues? Just want to say hi? Open an issue on GitHub. We're friendly, promise!
 
