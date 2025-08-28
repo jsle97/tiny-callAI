@@ -1,10 +1,10 @@
-# tinyCall.js 🤖
+# callAI-tiny 🤖
 
-Hey there! Welcome to tinyCall - your friendly neighborhood AI provider wrapper that makes talking to LLMs as easy as making a phone call. No more juggling five different SDKs or remembering which provider uses what format. Just pure, simple AI conversations.
+Hey there! Welcome to callAI-tiny - your friendly neighborhood AI provider wrapper that makes talking to LLMs as easy as making a phone call. No more juggling six different SDKs or remembering which provider uses what format. Just pure, simple AI conversations.
 
-## Why tinyCall?
+## Why callAI-tiny?
 
-Look, we've all been there. You start a project with OpenAI, then you want to try Claude, maybe experiment with Gemini... and suddenly you're drowning in different SDKs, each with their own quirks. That's where tinyCall comes in - one function to rule them all.
+Look, we've all been there. You start a project with OpenAI, then you want to try Claude, maybe experiment with Gemini... and suddenly you're drowning in different SDKs, each with their own quirks. That's where callAI-tiny comes in - one function to rule them all.
 
 ```javascript
 // This is all you need. Seriously.
@@ -13,10 +13,10 @@ const response = await callAI('claude-4s', messages);
 
 ## What's in the Box?
 
-- **5 Major AI Providers**: OpenAI, Anthropic, Google Gemini, Mistral, and xAI (Grok)
-- **Latest Models**: Including GPT-5, Claude 4.1 Opus, Gemini 2.5 Pro, and Grok 4
+- **6 Major AI Providers**: OpenAI, Anthropic, Google Gemini, Mistral, xAI (Grok), and Together AI
+- **Latest Models**: Including GPT-5, Claude 4.1 Opus, Gemini 2.5 Pro, Grok 4, and DeepSeek R1
 - **Vision Support**: Send images to models that can see
-- **Thinking/Reasoning Mode**: For those deep thoughts with o3-mini, Claude, and Gemini
+- **Thinking/Reasoning Mode**: For those deep thoughts with o3-mini, Claude, Gemini, and specialized reasoning models
 - **Zero Dependencies**: Just good ol' Node.js - no bloat, no fuss
 - **Cost Tracking**: Know exactly how much each call costs you
 - **Custom Models**: Bring your own models via `_models.js`
@@ -25,11 +25,11 @@ const response = await callAI('claude-4s', messages);
 
 ### Installation
 
-Just drop `tinyCall.js` into your project:
+Just drop `callAI-tiny.js` into your project:
 
 ```bash
 # Clone it, download it, copy-paste it - dealer's choice
-cp tinyCall.js your-project/
+cp callAI-tiny.js your-project/
 ```
 
 ### Set Up Your Keys
@@ -42,6 +42,7 @@ ANTHROPIC_API_KEY=sk-ant-api03-...
 GEMINI_API_KEY=...
 MISTRAL_API_KEY=...
 XAI_API_KEY=...
+TOGETHER_API_KEY=...
 ```
 
 Pro tip: You only need keys for the providers you're actually using. Not planning to chat with Grok? Skip the XAI key.
@@ -49,7 +50,7 @@ Pro tip: You only need keys for the providers you're actually using. Not plannin
 ### Your First Call
 
 ```javascript
-import { callAI } from './tinyCall.js';
+import { callAI } from './callAI-tiny.js';
 
 // The simplest thing that could possibly work
 const response = await callAI('claude-3.5s', [
@@ -95,7 +96,7 @@ import fs from 'fs';
 
 const imageBuffer = fs.readFileSync('cat.jpg');
 
-const response = await callAI('gpt-4o', [
+const response = await callAI('gpt-4om', [
   {
     role: 'user',
     content: [
@@ -122,6 +123,11 @@ const response = await callAI('claude-3.7s', messages, {
 const reasoning = await callAI('gpt-o3m', messages, {
   think: 'medium'  // o3/o4 models use reasoning_effort
 });
+
+// DeepSeek R1 for advanced reasoning
+const deepReasoning = await callAI('ds-r1', messages, {
+  think: true  // Let it think deeply
+});
 ```
 
 ### System Messages That Just Work
@@ -144,9 +150,11 @@ const response = await callAI('mistral-medium', messages);
 Here's what's available out of the box:
 
 ### OpenAI
-- `gpt-4o` - The flagship
-- `gpt-4om` - GPT-4o mini (fast & cheap)
-- `gpt-5` - The new hotness
+- `gpt-4om` - GPT-4o mini (fast & cheap, vision capable)
+- `gpt-4.1` - GPT-4.1 (the flagship)
+- `gpt-4.1m` - GPT-4.1 mini
+- `gpt-4.1n` - GPT-4.1 nano
+- `gpt-5` - GPT-5 (the new hotness)
 - `gpt-5m` - GPT-5 mini
 - `gpt-5n` - GPT-5 nano (tiny but mighty)
 - `gpt-o3m` - o3-mini (reasoning specialist)
@@ -159,7 +167,7 @@ Here's what's available out of the box:
 - `claude-3.7s` - Claude 3.7 Sonnet (with thinking!)
 - `claude-3.5s` - Claude 3.5 Sonnet
 - `claude-3.5h` - Claude 3.5 Haiku
-- `claude-3-h` - Claude 3 Haiku
+- `claude-3h` - Claude 3 Haiku
 
 ### Google Gemini
 - `gemini-2.5p` - Gemini 2.5 Pro (the beast)
@@ -169,16 +177,29 @@ Here's what's available out of the box:
 - `gemini-2fl` - Gemini 2.0 Flash Lite
 
 ### Mistral
-- `mistral-large` - The big one
-- `mistral-medium` - Goldilocks zone
-- `mistral-small` - Quick and nimble
+- `mistral-large` - The big one (vision capable)
+- `mistral-medium` - Goldilocks zone (vision capable)
+- `mistral-small` - Quick and nimble (vision capable)
+- `ministral-8b` - Mini but mighty
+- `ministral-3b` - Tiny and fast
 - `pixtral-large` - Vision specialist
 - `pixtral-12b` - Smaller vision model
 
 ### xAI (Grok)
-- `grok-4` - Latest Grok
-- `grok-3` - Grok 3
+- `grok-4` - Latest Grok (vision capable)
 - `grok-3m` - Grok 3 mini
+- `grok-code-fast` - Coding specialist
+
+### Together AI
+- `ds-r1` - DeepSeek R1 (reasoning powerhouse)
+- `ds-v3` - DeepSeek V3
+- `qw3-235b-think` - Qwen3 235B Thinking
+- `qw3-480b` - Qwen3 Coder 480B
+- `llam4-mav` - Llama 4 Maverick (vision capable)
+- `llam4-sc` - Llama 4 Scout (vision capable)
+- `qw2.5-vl-72b` - Qwen2.5 Vision Language (vision capable)
+- `gemma-3n-4b` - Gemma 3 nano (vision capable)
+- And many more... (40+ models total!)
 
 ## Advanced Usage
 
@@ -205,7 +226,7 @@ const response = await callAI(
 Every response includes detailed cost breakdown:
 
 ```javascript
-const response = await callAI('gpt-4o', messages);
+const response = await callAI('gpt-4om', messages);
 
 console.log('Input cost:', response.cost.in);      // Cost for prompt
 console.log('Output cost:', response.cost.out);    // Cost for response
@@ -247,19 +268,19 @@ We try to be helpful when things go wrong:
 
 ```javascript
 try {
-  const response = await callAI('gpt-4o', messages);
+  const response = await callAI('gpt-4om', messages);
 } catch (error) {
   // Specific error messages for common issues:
-  // - "Missing API key for openai. Please set OPENAI_API_KEY environment variable"
-  // - "Rate limit exceeded for anthropic. Please wait and try again."
-  // - "Model gpt-4o doesn't support images. Use one of: gpt-4o, claude-3.5s..."
+  // - "Missing API key for openai. Set OPENAI_API_KEY in .env"
+  // - "Rate limit exceeded for anthropic. Try again later."
+  // - "Model gpt-4o doesn't support images. Use one of: gpt-4om, claude-3.5s..."
   console.error(error.message);
 }
 ```
 
 ## Performance Tips
 
-1. **Model Selection**: Use smaller models for simple tasks. Why use GPT-4o to classify sentiment when GPT-4om will do?
+1. **Model Selection**: Use smaller models for simple tasks. Why use GPT-5 to classify sentiment when Gemini 2FL will do?
 
 2. **Batch Similar Requests**: If you're hitting rate limits, space out your calls:
    ```javascript
@@ -280,7 +301,7 @@ try {
 
 ## The Philosophy
 
-tinyCall believes in:
+callAI-tiny believes in:
 - **Simplicity**: One function, endless possibilities
 - **Flexibility**: Your project, your choice of models
 - **Transparency**: Know what you're spending
@@ -315,7 +336,7 @@ We especially love:
 
 ## License
 
-CC BY-NC 4.0
+MIT
 
 ## What's Next?
 
@@ -328,7 +349,7 @@ CC BY-NC 4.0
 
 ## Final Words
 
-tinyCall is what we wished existed when we started juggling multiple AI providers. It's not trying to be everything to everyone - it's just trying to make AI calls tiny and simple.
+callAI-tiny is what we wished existed when we started juggling multiple AI providers. It's not trying to be everything to everyone - it's just trying to make AI calls tiny and simple.
 
 Got questions? Issues? Just want to say hi? Open an issue on GitHub. We're friendly, promise!
 
